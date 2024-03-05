@@ -49,7 +49,7 @@ public class UserDao {
 			if((user).getFirstName()==null) {
 				user.setFirstName(m.getFirstName());
 			}
-			if(user.getLastName()!=null) {
+			if(user.getLastName()==null) {
 				user.setLastName(m.getLastName());
 			}
 			if(user.getEmail()==null) {

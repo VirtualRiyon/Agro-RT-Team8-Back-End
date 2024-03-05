@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jsp.Agro_bootRT.entity.User;
 import com.jsp.Agro_bootRT.service.UserService;
@@ -63,4 +64,5 @@ public class UserController {
 	public ResponseEntity<ResponseStructure<Integer>> sendOtp(@RequestParam String email){
 		return service.SendOtp(email);
 	}
+	
 }
