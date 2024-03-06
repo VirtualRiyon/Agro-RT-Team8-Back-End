@@ -74,8 +74,9 @@ public class ImageService {
 	}
 //delete**************************************************************
 	public ResponseEntity<ResponseStructure<Image>> deleteImg(int id){
-		Image db = imageDao.deleteImage(id);
-		if(db!=null) { 
+		Image db1 = imageDao.fetchImage(id);
+		if(db1!=null) {
+			Image db = imageDao.deleteImage(id);
 			ResponseStructure<Image> m= new ResponseStructure<Image>();
 			m.setData(db);
 			m.setMsg("deleted Successfully");

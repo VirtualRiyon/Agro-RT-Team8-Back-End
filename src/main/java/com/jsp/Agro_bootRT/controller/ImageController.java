@@ -3,6 +3,9 @@ package com.jsp.Agro_bootRT.controller;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jsp.Agro_bootRT.dao.ImageDao;
 import com.jsp.Agro_bootRT.entity.Image;
 import com.jsp.Agro_bootRT.service.ImageService;
 import com.jsp.Agro_bootRT.util.ResponseStructure;
@@ -22,6 +26,18 @@ public class ImageController {
 	
 	@Autowired
 	private ImageService imageService;
+	@Autowired
+	private ImageDao dao;
+	
+	@GetMapping("/image")
+    public ResponseEntity<byte[]> getImage(@RequestParam int id) {
+        byte[] imageBytes = dao.fetchImage(id).getImg();
+
+        // Set appropriate content type (e.g., image/jpeg)
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_JPEG);
+        return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
+    }
 	
 	@PostMapping("/saveimg")
 	public ResponseEntity<ResponseStructure<Image>> saveImge(@RequestParam int Uid,@RequestParam String name,@RequestParam MultipartFile img) throws IOException{

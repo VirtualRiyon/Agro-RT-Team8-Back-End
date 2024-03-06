@@ -63,22 +63,22 @@ public class ImageDao {
 	}
 //	delete ******************************************************************
 	public Image deleteImage(int id) {
-			Optional<User> db1 = userRepo.findById(id);
+			Optional<Image> db1 = imageRepo.findById(id);
 			if(db1.isPresent()) {
-				User db2 = db1.get();
-				Image child = db2.getImage();
+				User child = imageRepo.fetchByImage(db1.get());
 				if(child!=null) {
-					db2.setImage(null);
-					userDao.UpdateUser(db2);
-					imageRepo.delete(child);
+					child.setImage(null);
+					userDao.UpdateUser(child);
+					imageRepo.deleteById(id);
 				}
-				return child;
+				return db1.get();
 			}
 			else {
 			return null;
 		}
 	}
-	
+
+//for updating
 	public int id(int id) {
 		Optional<Image> db = imageRepo.findById(id);
 		if(db.isPresent()) {
