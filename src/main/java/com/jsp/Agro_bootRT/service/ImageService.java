@@ -3,7 +3,9 @@ package com.jsp.Agro_bootRT.service;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,14 +47,14 @@ public class ImageService {
 	}
 
 //fetch*********************
-	public ResponseEntity<ResponseStructure<Image>> fetchImg(int id){
+	public ResponseEntity<byte[]> fetchImgbyid(int id){
 		Image db = imageDao.fetchImage(id);
 		if(db!=null) {
-			ResponseStructure<Image> m= new ResponseStructure<Image>();
-			m.setData(db);
-			m.setMsg("Details fetched Successfully");
-			m.setStatus(HttpStatus.FOUND.value());
-			return new ResponseEntity<ResponseStructure<Image>>(m,HttpStatus.FOUND);
+			byte[] imageBytes = imageDao.fetchImage(id).getImg();
+	        // Set appropriate content type (e.g., image/jpeg)
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.setContentType(MediaType.IMAGE_JPEG);
+	        return new ResponseEntity<byte[]>(imageBytes, headers, HttpStatus.OK);
 		}
 		else {
 			throw new UserIdNotFound();

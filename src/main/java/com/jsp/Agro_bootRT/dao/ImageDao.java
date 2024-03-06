@@ -17,8 +17,6 @@ public class ImageDao {
 	@Autowired
 	private ImageRepo imageRepo;
 	@Autowired
-	private UserRepo userRepo;
-	@Autowired
 	private UserDao userDao;
 	
 //	**************************************************************************

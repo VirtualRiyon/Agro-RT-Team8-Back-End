@@ -29,28 +29,22 @@ public class ImageController {
 	@Autowired
 	private ImageDao dao;
 	
-	@GetMapping("/image")
-    public ResponseEntity<byte[]> getImage(@RequestParam int id) {
-        byte[] imageBytes = dao.fetchImage(id).getImg();
-
-        // Set appropriate content type (e.g., image/jpeg)
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_JPEG);
-        return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
-    }
 	
 	@PostMapping("/saveimg")
 	public ResponseEntity<ResponseStructure<Image>> saveImge(@RequestParam int Uid,@RequestParam String name,@RequestParam MultipartFile img) throws IOException{
 		return imageService.saveImage(Uid, name, img);
 	}
+	
 	@GetMapping("/fetchimg")
-	public ResponseEntity<ResponseStructure<Image>> fetchImage(@RequestParam int id){
-		return imageService.fetchImg(id);
-	}
+    public ResponseEntity<byte[]> getImage(@RequestParam int id) {
+        return imageService.fetchImgbyid(id);
+    }
+    
 	@PutMapping("/updateimg")
 	public ResponseEntity<ResponseStructure<Image>> updateImg(@RequestParam int id, @RequestParam MultipartFile file) throws IOException{
 		return imageService.UpdateImage(id,file);
 	}
+	
 	@DeleteMapping("/deleteimg")
 	public ResponseEntity<ResponseStructure<Image>> deleteImg(@RequestParam int id){
 		return imageService.deleteImg(id);
