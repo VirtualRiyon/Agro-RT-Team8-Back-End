@@ -9,6 +9,6 @@ import com.jsp.Agro_bootRT.entity.User;
 public interface ImageRepo  extends JpaRepository<Image, Integer>{
 
 	@Query("select a  from User a where a.image=?1")
-	User fetchByImage(Image image);
+	User userfetchByImage(Image image);
 
 }

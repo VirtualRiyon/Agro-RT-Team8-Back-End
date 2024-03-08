@@ -54,7 +54,7 @@ public class ImageService {
 	        // Set appropriate content type (e.g., image/jpeg)
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.setContentType(MediaType.IMAGE_JPEG);
-	        return new ResponseEntity<byte[]>(imageBytes, headers, HttpStatus.OK);
+	        return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
 		}
 		else {
 			throw new UserIdNotFound();

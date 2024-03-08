@@ -29,7 +29,7 @@ public class ImageDao {
 	public Image fetchImage(int id)
 	{
 		Optional<Image> db = imageRepo.findById(id);
-		if(db!=null) {
+		if(db.isPresent()) {
 			return db.get();
 		}
 		else {
@@ -63,7 +63,7 @@ public class ImageDao {
 	public Image deleteImage(int id) {
 			Optional<Image> db1 = imageRepo.findById(id);
 			if(db1.isPresent()) {
-				User child = imageRepo.fetchByImage(db1.get());
+				User child = imageRepo.userfetchByImage(db1.get());
 				if(child!=null) {
 					child.setImage(null);
 					userDao.UpdateUser(child);

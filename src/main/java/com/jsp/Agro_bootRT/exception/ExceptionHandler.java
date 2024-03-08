@@ -12,7 +12,7 @@ public class ExceptionHandler {
 	@org.springframework.web.bind.annotation.ExceptionHandler(UserIdNotFound.class)
 	public ResponseEntity<ResponseStructure<String>> UserIdHandler (UserIdNotFound ex){
 		ResponseStructure<String> m= new ResponseStructure<String>();
-		m.setData("User Not Found");
+		m.setData("Data Not Found");
 		m.setMsg(ex.getMsg());
 		m.setStatus(HttpStatus.NOT_FOUND.value());
 		return new ResponseEntity<ResponseStructure<String>>(m,HttpStatus.NOT_FOUND);
