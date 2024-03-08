@@ -25,7 +25,7 @@ public class PostService {
 	private PostDao postDao;
 	@Autowired
 	private UserDao userDao;
-	
+//save
 	public ResponseEntity<ResponseStructure<Post>> savePost(int uid,MultipartFile file, String caption,String location) throws IOException{
 		User db = userDao.FethcByid(uid);
 		if(db!=null) {
@@ -54,12 +54,14 @@ public class PostService {
 			throw new UserIdNotFound();
 		}
 	}
-	
+//	fetch
 	public ResponseEntity<ResponseStructure<Post>> fetchPost(int id){
-	     Post db = postDao.fetchPost(id);
+	     List<Post> db = postDao.fetchPost(id);
 	     if(db!=null) {
 	    	 ResponseStructure<Post> p=new ResponseStructure<Post>();
-	    	 p.setData(db);
+	    	 List<Post> m=new ArrayList<Post>();
+	    	 m.addAll(db);
+	    	 p.setListdata(db);
 	    	 p.setMsg("Data fetched successfully");
 	    	 p.setStatus(HttpStatus.FOUND.value());
 	    	  return new ResponseEntity<ResponseStructure<Post>>(p,HttpStatus.FOUND);
@@ -67,5 +69,19 @@ public class PostService {
 	     else {
 	    	 throw new UserIdNotFound();
 	     }
+	}
+//delete
+	public ResponseEntity<ResponseStructure<Post>> deletePost(int id){
+		Post db = postDao.deletePost(id);
+		if(db!=null){
+			ResponseStructure<Post> m=new ResponseStructure<Post>();
+			m.setData(db);
+			m.setMsg("deleted successfulkly");
+			m.setStatus(HttpStatus.GONE.value());
+			return  new ResponseEntity<ResponseStructure<Post>>(m,HttpStatus.GONE);
+		}
+		else {
+			throw new UserIdNotFound();
+		}
 	}
 }

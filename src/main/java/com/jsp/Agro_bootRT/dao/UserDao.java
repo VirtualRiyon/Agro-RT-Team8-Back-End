@@ -67,6 +67,9 @@ public class UserDao {
 			if(user.getGender()==null) {
 				user.setGender(m.getGender());
 			}
+			if(user.getPost()==null) {
+				user.setPost(m.getPost());
+			}
 			return repo.save(user);
 		}
 		else {

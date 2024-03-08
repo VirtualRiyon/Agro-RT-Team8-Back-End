@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,5 +27,9 @@ public class PostController {
 	@GetMapping("/fetchpost")
 	public ResponseEntity<ResponseStructure<Post>> fetchPost(@RequestParam int id){
 		return postService.fetchPost(id);
+	}
+	@DeleteMapping("/deletepost")
+	public ResponseEntity<ResponseStructure<Post>> deletePost(@RequestParam int id){
+		return postService.deletePost(id);
 	}
 }
