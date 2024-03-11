@@ -76,7 +76,7 @@ public class PostService {
 		if(db!=null){
 			ResponseStructure<Post> m=new ResponseStructure<Post>();
 			m.setData(db);
-			m.setMsg("deleted successfulkly");
+			m.setMsg("deleted successfully");
 			m.setStatus(HttpStatus.GONE.value());
 			return  new ResponseEntity<ResponseStructure<Post>>(m,HttpStatus.GONE);
 		}

@@ -14,6 +14,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 @Entity
 @Data
@@ -21,11 +24,17 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String firstName;
-	private String lastName;
+	  @NotBlank(message="you must write a First Name")
+	  @NotNull(message = "First name is mandatory")
+	  private String firstName;
+	  
+	  @NotBlank(message="you must write a Last Name")
+	  @NotNull(message = "Last name is mandatory")
+	  private String lastName;
 	@Column(unique = true)
 	private String email;
-	private long phone;
+	private long phone; 
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$", message = "Password must be at least 8 characters long and contain at least one digit, one lowercase letter, one uppercase letter, one special character, and no whitespace")
 	private String password;
 	private String gender;
 	private int age;

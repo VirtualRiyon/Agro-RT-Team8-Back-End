@@ -50,11 +50,8 @@ public class PostDao {
 	            while (iterator.hasNext()) {
 	                Post post = iterator.next();
 	                if (post.getId() == id) {
-	                    // Remove the post from the user's list of posts
-	                    iterator.remove();
-	                    // Update the user without breaking the relationships with other posts
+	                    iterator.remove();;
 	                    userDao.UpdateUser(user);
-	                    // Delete the post and its associated image
 	                    postRepo.deleteById(id);
 	                    imageDao.deleteImage(id);
 	                    return post;
@@ -62,6 +59,7 @@ public class PostDao {
 	            }
 	        }
             return null;
+		
 	}
 	
 //update
