@@ -26,11 +26,11 @@ public class User {
 	private int id;
 	  @NotBlank(message="you must write a First Name")
 	  @NotNull(message = "First name is mandatory")
-	  private String firstName;
+	 private String firstName;
 	  
 	  @NotBlank(message="you must write a Last Name")
 	  @NotNull(message = "Last name is mandatory")
-	  private String lastName;
+	 private String lastName;
 	@Column(unique = true)
 	private String email;
 	private long phone; 

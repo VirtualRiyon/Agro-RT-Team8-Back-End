@@ -50,7 +50,7 @@ public class PostDao {
 	            while (iterator.hasNext()) {
 	                Post post = iterator.next();
 	                if (post.getId() == id) {
-	                    iterator.remove();;
+	                    iterator.remove();
 	                    userDao.UpdateUser(user);
 	                    postRepo.deleteById(id);
 	                    imageDao.deleteImage(id);
@@ -63,26 +63,27 @@ public class PostDao {
 	}
 	
 //update
-//	public Post updatePost(int id,MultipartFile file) throws IOException {
-//		Image image=new Image();
-//		image.setImg(file.getBytes());
-//		image.setName(file.getOriginalFilename());
-//		Post post=new Post();
-//		post.setImage(image);
-//		Optional<Post> db = postRepo.findById(id);
-//		Post data = db.get();
-//		if(db.isPresent()) {
-//			if(post.getId()==0) {
-//				post.setId(data.getId());
-//			}
-//			if(post.getImage()==null) {
-//				post.setImage(image);
-//			}
-//			return postRepo.save(post);
-//		}
-//		else {
-//			return null;
-//		}
-//	}
+	public Post updatePost(Post post){
+		Optional<Post> db = postRepo.findById(post.getId()); 
+		if(db.isPresent()) {
+			Post data = db.get();
+			if(post.getComments()==null) {
+				post.setComments(data.getComments());
+			}
+			if(post.getCaption()==null) {
+				post.setCaption(data.getCaption());
+			}
+			if(post.getLocation()==null) {
+				post.setLocation(data.getLocation());
+			}
+			if(post.getDatetime()==null) {
+				post.setDatetime(data.getDatetime());
+			}
+			return postRepo.save(data);
+		}
+		else {
+			return null;
+		}
+	}
 
 }
