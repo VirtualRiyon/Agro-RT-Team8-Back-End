@@ -57,7 +57,7 @@ public class CommentsService {
 				throw new UserIdNotFound();
 			}
 		}
-		else {
+		else { 
 			throw new UserIdNotFound();
 		}
 	}

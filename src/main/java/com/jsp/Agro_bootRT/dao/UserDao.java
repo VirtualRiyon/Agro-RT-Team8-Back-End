@@ -46,7 +46,7 @@ public class UserDao {
 		Optional<User> db = repo.findById(user.getId());
 		User m = db.get();
 		if(db.isPresent()) {
-			if((user).getFirstName()==null) {
+			if(user.getFirstName()==null) {
 				user.setFirstName(m.getFirstName());
 			}
 			if(user.getLastName()==null) {

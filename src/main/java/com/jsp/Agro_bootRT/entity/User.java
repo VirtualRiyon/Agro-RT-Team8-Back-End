@@ -2,6 +2,7 @@ package com.jsp.Agro_bootRT.entity;
 
 import java.util.List;
 
+
 import com.jsp.Agro_bootRT.enums.UserType;
 
 import jakarta.persistence.CascadeType;
@@ -18,6 +19,15 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 @Entity
 @Data
 public class User {

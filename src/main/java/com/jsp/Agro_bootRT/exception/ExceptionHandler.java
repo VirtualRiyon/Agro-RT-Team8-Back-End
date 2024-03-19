@@ -46,15 +46,13 @@ public class ExceptionHandler {
 		m.setStatus(HttpStatus.NOT_FOUND.value());
 		return new ResponseEntity<ResponseStructure<String>>(m,HttpStatus.NOT_FOUND);
 	}
-	
-	public ResponseEntity<ResponseStructure<String>> SqlException(SqlException ex){
+	@org.springframework.web.bind.annotation.ExceptionHandler(EquipmentNameNotFound.class)
+	public ResponseEntity<ResponseStructure<String>>EquipmentNameHandler(EquipmentNameNotFound eqx){
 		ResponseStructure<String> m= new ResponseStructure<String>();
-		m.setData("Email Is Already Exist.. Please Use Another Email");
-		m.setMsg(ex.getMsg());
-		m.setStatus(HttpStatus.ALREADY_REPORTED.value());
-		return new ResponseEntity<ResponseStructure<String>>(m,HttpStatus.ALREADY_REPORTED);
-		
-		
+		m.setData("Equipment name Not Found");
+		m.setStatus(HttpStatus.NOT_FOUND.value());
+		m.setMsg(eqx.getMsg());
+		return new ResponseEntity<ResponseStructure<String>>(m,HttpStatus.NOT_FOUND);
 	}
 	
 	
