@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jsp.Agro_bootRT.entity.Equipment;
 import com.jsp.Agro_bootRT.entity.Post;
+import com.jsp.Agro_bootRT.entity.User;
 import com.jsp.Agro_bootRT.repo.EquipmentRepo;
 
 import jakarta.validation.constraints.AssertFalse.List;
@@ -33,7 +34,7 @@ public class EuipmentDao {
 			if(equipment.getCph()==0) {
 				equipment.setCph(data.getCph());;
 			}
-			return equipmentrepo.save(data);
+			return equipmentrepo.save(equipment);
 		}
 		else {
 			return null;
@@ -70,6 +71,16 @@ public class EuipmentDao {
 //	fetchByname
 	public Equipment fetchByName(String equipmentname) {
 		Equipment db = equipmentrepo.fetchByname(equipmentname);
+		if(db!=null) {
+			return db;
+		}
+		else {
+			return null;
+		}
+	}
+//fetchByUserId
+	public java.util.List<Equipment> fetchByUserId(User user) {
+		java.util.List<Equipment> db = equipmentrepo.findByUser(user);
 		if(db!=null) {
 			return db;
 		}

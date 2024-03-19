@@ -109,4 +109,20 @@ public class EquipmentService {
 			throw new EquipmentNameNotFound();
 		}
 	}
+//	fetchByuserId
+	public ResponseEntity<ResponseStructure<List<Equipment>>> fetcByUserId(int user_id){
+		User db = userDao.FethcByid(user_id);
+		if(db!=null) {
+			List<Equipment> db1 = dao.fetchByUserId(db);
+			ResponseStructure<List<Equipment>> m=new ResponseStructure<>();
+			m.setData(db1);
+			m.setMsg("data feteched successfully based on user_id");
+			m.setStatus(HttpStatus.FOUND.value());
+			
+			return new ResponseEntity<ResponseStructure<List<Equipment>>>(m,HttpStatus.FOUND);
+		}
+		else {
+			throw new UserIdNotFound();
+		}
+	}
 }

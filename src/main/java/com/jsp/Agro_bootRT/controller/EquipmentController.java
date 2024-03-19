@@ -1,5 +1,7 @@
 package com.jsp.Agro_bootRT.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.service.annotation.PutExchange;
 
 import com.jsp.Agro_bootRT.entity.Equipment;
+import com.jsp.Agro_bootRT.entity.User;
 import com.jsp.Agro_bootRT.service.EquipmentService;
 import com.jsp.Agro_bootRT.util.ResponseStructure;
 
@@ -45,6 +48,10 @@ public class EquipmentController {
 	@GetMapping("/fetchByNameEqp")
 	public ResponseEntity<ResponseStructure<Equipment>> fetchByName(@RequestParam String equipmentname){
 		return equipmentService.fetchByName(equipmentname);
+	}
+	@GetMapping("/fetchByuserId")
+	public ResponseEntity<ResponseStructure<List<Equipment>>> fetchByUserId(@RequestParam int user_id){
+		return equipmentService.fetcByUserId(user_id);
 	}
 	
 }
