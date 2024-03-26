@@ -54,6 +54,14 @@ public class ExceptionHandler {
 		m.setMsg(eqx.getMsg());
 		return new ResponseEntity<ResponseStructure<String>>(m,HttpStatus.NOT_FOUND);
 	}
+	@org.springframework.web.bind.annotation.ExceptionHandler(DateExceptionn1.class)
+	public ResponseEntity<ResponseStructure<String>>dateHandler(DateExceptionn1 dex){
+		ResponseStructure<String> m= new ResponseStructure<>();
+		m.setData("invalid Date And Time");
+		m.setMsg(dex.getMsg());
+		m.setStatus(HttpStatus.NOT_FOUND.value());
+		return new ResponseEntity<ResponseStructure<String>>(m,HttpStatus.NOT_FOUND);
+	}
 	
 	
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,

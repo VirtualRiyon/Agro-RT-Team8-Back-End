@@ -21,8 +21,8 @@ public class Rental {
 	private int id;
 	private LocalDateTime starttime;
 	private LocalDateTime endtime;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Equipment equipment;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private TransactionHistory transactionHistory;
 }

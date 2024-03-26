@@ -96,10 +96,10 @@ public class EquipmentService {
 	}
 //fetchByname
 	public ResponseEntity<ResponseStructure<Equipment>> fetchByName(String equipmentname){
-		Equipment db = dao.fetchByName(equipmentname);
+		List<Equipment> db = dao.fetchByName(equipmentname);
 		if(db!=null) {
 			ResponseStructure<Equipment> m=new ResponseStructure<>();
-			m.setData(db);
+			m.setListdata(db);
 			m.setMsg("fetched Equipments Based on name");
 			m.setStatus(HttpStatus.FOUND.value());
 			

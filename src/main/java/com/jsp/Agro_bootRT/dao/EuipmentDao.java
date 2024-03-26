@@ -44,9 +44,6 @@ public class EuipmentDao {
 	public Equipment deleteEquipment(int id) {
 		Optional<Equipment> db = equipmentrepo.findById(id);
 		if(db.isPresent()) {
-			Equipment equipment=new Equipment();
-			equipment.setUser(null);
-			updateEquipment(equipment);
 			equipmentrepo.deleteById(id);
 			return db.get();
 		}
@@ -69,23 +66,23 @@ public class EuipmentDao {
 		return equipmentrepo.findAll();
 	}
 //	fetchByname
-	public Equipment fetchByName(String equipmentname) {
-		Equipment db = equipmentrepo.fetchByname(equipmentname);
-		if(db!=null) {
-			return db;
+	public java.util.List<Equipment> fetchByName(String equipmentname) {
+		java.util.List<Equipment> db = equipmentrepo.fetchByname(equipmentname);
+		if(db.isEmpty()) {
+			return null;
 		}
 		else {
-			return null;
+			return db;
 		}
 	}
 //fetchByUserId
 	public java.util.List<Equipment> fetchByUserId(User user) {
 		java.util.List<Equipment> db = equipmentrepo.findByUser(user);
-		if(db!=null) {
-			return db;
+		if(db.isEmpty()) {
+			return null;
 		}
 		else {
-			return null;
+			return db;
 		}
 	}
 	

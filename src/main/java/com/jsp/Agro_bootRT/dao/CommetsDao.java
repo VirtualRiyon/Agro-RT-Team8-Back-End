@@ -2,6 +2,9 @@ package com.jsp.Agro_bootRT.dao;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+
+import javax.xml.stream.events.Comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -42,6 +45,14 @@ public class CommetsDao {
 	        }
 	    }
 	    return null;
+	}
+	
+	public Commentss fetchCommentById(int id) {
+		Optional<Commentss> db =commentsRepo.findById(id);
+		if(db.isPresent()) {
+			return db.get();
+		}else
+			return null;
 	}
 
 		
