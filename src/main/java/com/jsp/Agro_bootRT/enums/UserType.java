@@ -1,6 +1,6 @@
 package com.jsp.Agro_bootRT.enums;
 
 public enum UserType {
-	farmer,
+	Farmer,Vendor
 //	to separate two enums we need use ","
 }

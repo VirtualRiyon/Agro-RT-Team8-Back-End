@@ -17,5 +17,5 @@ public class RentalDao {
 	public Rental saveRental(Rental rental) {
 		return rentalRepo.save(rental);
 	}
-
+	
 }

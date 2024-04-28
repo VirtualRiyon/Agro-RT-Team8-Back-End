@@ -129,8 +129,8 @@ public class UserService {
 			ResponseStructure<Integer> m = new ResponseStructure<Integer>();
 			m.setData(value);
 			m.setMsg("OTP Sent Successfully");
-			m.setStatus(HttpStatus.FOUND.value());
-			return new ResponseEntity<ResponseStructure<Integer>>(m, HttpStatus.FOUND);
+			m.setStatus(HttpStatus.OK.value());
+			return new ResponseEntity<ResponseStructure<Integer>>(m, HttpStatus.OK);
 		} else {
 			throw new UseremailNotExist();
 		}

@@ -9,4 +9,6 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 	@Query("select a from User a where a.email=?1")
 	public abstract User fetchEmail(String email);
 	
+	
+	
 }
